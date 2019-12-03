@@ -1,0 +1,87 @@
+import {Home,BooksList,AddBooks,Login,UserList,UserInfo} from "pages"
+
+export const LayoutRoutes = [
+    {
+        path:"/home",
+        component:Home,
+        meta:{
+            requiredAuth:true
+        },
+        icon:"home",
+        text:"系统首页",
+        key:"/home"
+    },
+    {
+        path:"/books",
+        meta:{
+            requiredAuth:true
+        },
+        children:[
+            {
+                path:"/books/booksList",
+                component:BooksList,
+                meta:{
+                    requiredAuth:true
+                },
+                icon:"ordered-list",
+                text:"书籍列表",
+                key:"/books/booksList"
+            },
+            {
+                path:"/books/addBooks",
+                component:AddBooks,
+                meta:{
+                    requiredAuth:true
+                },
+                icon:"edit",
+                text:"添加书籍",
+                key:"/books/addBooks"
+            }
+        ],
+        icon:"copy",
+        text:"书籍管理",
+        key:"/books"
+    },
+    {
+        path:"/user",
+        meta:{
+            requiredAuth:true
+        },
+        children:[
+            {
+                path:"/user/userList",
+                component:UserList,
+                meta:{
+                    requiredAuth:true
+                },
+                icon:"menu",
+                text:"用户列表",
+                key:"/user/userList"
+            },
+            {
+                path:"/user/userInfo",
+                component:UserInfo,
+                meta:{
+                    requiredAuth:true
+                },
+                icon:"team",
+                text:"个人中心",
+                key:"/user/userInfo"
+            }
+        ],
+        icon:"user",
+        text:"用户管理",
+        key:"/user"
+    }
+];
+
+export const NoLayoutRoutes = [
+    {
+        path:"/login",
+        component:Login,
+        meta:{},
+        key:"/login"
+    }
+];
+
+export const RoutesConfig = LayoutRoutes.concat(NoLayoutRoutes)
