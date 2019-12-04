@@ -49,7 +49,7 @@ export default (routes) => {
         } else {
            return (
                 <Route path={item.path} key={item.key} render={() => {
-                   console.log(item);
+                
                     return isLogin(item);
                 }} />
            )
