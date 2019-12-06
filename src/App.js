@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <Switch>
         <Layout>
-            <Redirect from="/" to="/home" exact/>
+            <Redirect from="/" to="/books/booksList" exact/>
             {
               routeEach(LayoutRoutes)
             }
