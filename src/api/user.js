@@ -5,3 +5,8 @@ export const loginApi = (username,password)=>http.post({
     method:"POST",
     data:{username,password}
 })
+
+export const userListApi = ()=>http.get({
+    method:"get",
+    url:"/ajax/users/userList"
+})

@@ -1,6 +1,6 @@
-import {userLoginTypes} from "./usersTypes";
+import {userLoginTypes,userListTypes} from "./usersTypes";
 import {createAction} from "redux-actions";
-import {loginApi} from "api/user"
+import {loginApi,userListApi} from "api/user"
 import {message} from "antd"
 export const loginAsyncAction = (username,password)=>{
     let loginAction = createAction(userLoginTypes,data=>data)
@@ -16,9 +16,16 @@ export const loginAsyncAction = (username,password)=>{
             return data.data.code;
         }else{
             message.error(data.data.info)
-        }
+        }   
+    }
+}
 
-
-        
+export const userListAsyncAction = ()=>{
+    let userListAction = createAction(userListTypes,(total,userList)=>({total,userList}))
+    return async (dispatch)=>{
+        let data = await userListApi();
+        sessionStorage.setItem("total",data.data.data[1]);
+        sessionStorage.setItem("userList",JSON.stringify(data.data.data[0]))
+        dispatch(userListAction(data.data.data[1],data.data.data[0]))
     }
 }
